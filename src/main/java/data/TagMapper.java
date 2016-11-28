@@ -41,6 +41,7 @@ public class TagMapper {
         q.setParameter("tagname", tagName);
         try {
             tag = q.getSingleResult();
+            em.close();
         } catch(NoResultException ex){
             addTag(tagName);
             tag = getTagByName(tagName);
@@ -77,43 +78,49 @@ public class TagMapper {
     }
 
     public void addTag(String tagname) {
-        if (getTagByName(tagname) == null) {
+        
+            try {
             EntityManager em = getEntityManager();
             em.getTransaction().begin();
             em.persist(new Tag(tagname));
             em.getTransaction().commit();
             em.close();
+        } catch (Exception e) {
+                System.out.println("ERROR in addTag()"+e.getMessage());
         }
     }
 
     public static void main(String[] args) {
         EntityManagerFactory emfac = Persistence.createEntityManagerFactory("PU");
         TagMapper tm = new TagMapper(emfac);
-        try {
-            String[] tags = {
-                "Betty",
-                "Henrik",
-                "Thomas",
-                "Marianne",
-                "Leander",
-                "Laura",
-                "Alva",
-                "Charlotte",
-                "Rasmus",
-                "Mads",
-                "Ditte",
-                "Thorkild",
-                "Kylle",
-                "Granni"
-            };
-            for (String tag : tags) {
-                tm.addTag(tag);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        for (Tag tag : tm.getAllTags()) {
-            System.out.println("tag: " + tag.getName());
-        }
+        System.out.println("HEIIIIIIIIII");
+//        try {
+//            String[] tags = {
+//                "Betty",
+//                "Henrik",
+//                "Thomas",
+//                "Marianne",
+//                "Leander",
+//                "Laura",
+//                "Alva",
+//                "Charlotte",
+//                "Rasmus",
+//                "Mads",
+//                "Ditte",
+//                "Thorkild",
+//                "Kylle",
+//                "Granni"
+//            };
+//            for (String tag : tags) {
+//                tm.addTag(tag);
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        for (Tag tag : tm.getAllTags()) {
+//            System.out.println("tag: " + tag.getName());
+//        }
+//        tm.addTag("somename");
+        tm.getTagByName("somename");
     }
 }

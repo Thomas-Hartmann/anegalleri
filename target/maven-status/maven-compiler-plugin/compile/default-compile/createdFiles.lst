@@ -1,4 +1,5 @@
 data\PasswordStorage.class
+rest\ImageResource.class
 rest\UserResource.class
 data\populate\Populate.class
 domain\entity\Article.class
@@ -13,12 +14,14 @@ domain\interfaces\ITagFacade.class
 facade\IDBFacade.class
 domain\entity\Articleversion.class
 domain\entity\Image.class
+rest\ArticleResource.class
 domain\excecption\EntityAllreadyExcistsException.class
 domain\interfaces\IArticleFacade.class
 domain\interfaces\IUserFacade.class
 domain\entity\Articleversion_.class
 domain\excecption\NonexistentEntityException.class
 data\ArticleMapper.class
+rest\TagResource.class
 data\PasswordStorage$CannotPerformOperationException.class
 domain\entity\Tag.class
 data\PasswordStorage$InvalidHashException.class
@@ -27,6 +30,7 @@ domain\entity\Tag_.class
 data\DBFacade.class
 domain\entity\Article_.class
 domain\entity\Image_.class
+domain\entity\wrappers\UserWrapper.class
 domain\entity\Role.class
 rest\Tester.class
 domain\entity\Tester.class
@@ -36,6 +40,7 @@ facade\TagFacade.class
 domain\entity\User.class
 domain\entity\wrappers\ArticleWrapper.class
 securtity\Secret.class
+rest\RestUtil.class
 domain\entity\wrappers\ImageWrapper.class
 domain\entity\User_.class
 data\ImageMapper.class

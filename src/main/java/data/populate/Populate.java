@@ -27,7 +27,7 @@ public class Populate {
         ArticleMapper am = new ArticleMapper(emfac);
         
 //        Persistence.generateSchema("PU", null);
-        final File folder = new File("C:\\Users\\tha\\GitRepos\\DAT\\Sem2\\2016e\\todelete\\anegalleri\\src\\main\\webapp\\img");
+        final File folder = new File("C:\\Users\\tha\\GitRepos\\Private\\anegalleri\\src\\main\\webapp\\img");
         List<Image> images = listFilesForFolder(folder, new ArrayList());
         List<Tag> tags = createTags();
         System.out.println("NUMBER of IMAGES: " + images.size());
@@ -41,9 +41,9 @@ public class Populate {
                 System.out.println(ex.getMessage());
             }
         }
-        for (Tag tag : tags) {
-            tm.addTag(tag.getName());
-        }
+//        for (Tag tag : tags) {
+//            tm.addTag(tag.getName());
+//        }
         em.getTransaction().commit();
         em.close();
     }

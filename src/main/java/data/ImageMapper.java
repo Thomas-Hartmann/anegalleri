@@ -113,15 +113,15 @@ public class ImageMapper {
         try {
             EntityManagerFactory emfac = Persistence.createEntityManagerFactory("PU");
             ImageMapper im = new ImageMapper(emfac);
-            ArticleMapper am = new ArticleMapper(emfac);
+            //ArticleMapper am = new ArticleMapper(emfac);
             TagMapper tm = new TagMapper(emfac);
-            Image image = im.getImage(18); System.out.println("image: "+image.getImagename());
-            Article article = am.getArticle(5); System.out.println("article: "+article.getName());
-            image.setArticle(article);
+            Image image = im.getImage(19); System.out.println("image: "+image.getImagename());
+            //Article article = am.getArticle(5); System.out.println("article: "+article.getName());
+            //image.setArticle(article);
+            image.addTag(tm.getTagByName("Mads"));
             image.addTag(tm.getTagByName("Ditte"));
-            image.addTag(tm.getTagByName("Thy"));
             im.editImage(image);
-            Image retrieved = im.getImageByArticle(article.getId()); System.out.println("retrieved image: "+retrieved.getImagename()+""+retrieved.getTags().get(1));
+            //Image retrieved = im.getImageByArticle(article.getId()); System.out.println("retrieved image: "+retrieved.getImagename()+""+retrieved.getTags().get(1));
             List<Image> images = tm.getTagByName("Ditte").getImages();
             for (Image i : images) {
                 System.out.println("image"+i.getId()+" path:"+i.getPath());

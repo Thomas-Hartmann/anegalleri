@@ -25,6 +25,9 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
+        resources.add(rest.ArticleResource.class);
+        resources.add(rest.ImageResource.class);
+        resources.add(rest.TagResource.class);
         resources.add(rest.Tester.class);
         resources.add(rest.UserResource.class);
     }

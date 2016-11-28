@@ -94,11 +94,8 @@ public class UserResource {
 //        String username = input.get("username").getAsString();
 //        String passsword = input.get("password").getAsString();
 //        JsonArray roles = input.get("roles").getAsJsonArray();
-
+            job.addProperty("id", user.getId());
             job.addProperty("username", user.getUsername());
-            job.addProperty("password", user.getPassword());
-//            String result = gson.toJson(user);
-//            return result;
         } catch (NonexistentEntityException ex) {
             job.addProperty("errormsg", ex.getMessage());
             return gson.toJson(job);

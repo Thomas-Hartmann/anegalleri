@@ -2,6 +2,7 @@ package domain.interfaces;
 
 import domain.entity.Article;
 import domain.entity.Articleversion;
+import domain.entity.wrappers.ArticleWrapper;
 import domain.excecption.NonexistentEntityException;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public interface IArticleFacade {
     public Articleversion getLastVersion(int articleId);
     public Articleversion getLastVersion(int articleId, int userId);
     public Articleversion getFirstVersion(int articleId); //
+    public ArticleWrapper wrapArticle(Article article);
+    public List<ArticleWrapper> wrapArticles(List<Article> articles);
     public void addArticle(Article article, String username);
     public void addArticleVersion(Articleversion av, int articleid) throws NonexistentEntityException ;
     //public void editArticle(Article article); //add new Articleversion

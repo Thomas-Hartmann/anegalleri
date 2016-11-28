@@ -47,7 +47,7 @@ public class Image implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -63,7 +63,7 @@ public class Image implements Serializable {
     private String path;
     
     @Column(name = "year")
-    private Integer year;
+    private int year;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "tags_images", joinColumns = {
@@ -73,7 +73,7 @@ public class Image implements Serializable {
     
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Article article;
-    private boolean isActive;
+    private boolean isActive = true;
 
     public Image() {
     }
@@ -87,7 +87,7 @@ public class Image implements Serializable {
         this.path = path;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -154,7 +154,7 @@ public class Image implements Serializable {
         this.path = path;
     }
 
-    public Integer getYear() {
+    public int getYear() {
         return year;
     }
 

@@ -1,6 +1,7 @@
 package domain.interfaces;
 
 import domain.entity.User;
+import domain.entity.wrappers.UserWrapper;
 import domain.excecption.NoSuchUserException;
 import domain.excecption.NonexistentEntityException;
 import domain.excecption.NotAuthenticatedException;
@@ -13,6 +14,9 @@ import java.util.List;
 public interface IUserFacade {
     public void createUser(User user) throws NonexistentEntityException;
     public User getUser(int userId) throws NoSuchUserException;
+    public User getUserFromName(String username) throws NoSuchUserException;
+    public UserWrapper wrapUser(User user);
+    public List<UserWrapper> wrapUsers(List<User> users);
     public List<User> getUserFromArticle(int userid);
     public List<User> getAllUsers();
     public void addUser(User user) throws NonexistentEntityException;

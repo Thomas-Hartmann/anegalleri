@@ -1,24 +1,26 @@
 package domain.entity.wrappers;
 
+import data.DBFacade;
 import domain.entity.Article;
 import domain.entity.Image;
 import domain.entity.Tag;
+import domain.excecption.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+import domain.interfaces.*;
 /**
  *
  * @author Thomas Hartmann - tha@cphbusiness.dk created on Nov 20, 2016 
  */
 public class ImageWrapper implements Serializable{
 
-    private Integer id;
+    private int id;
     private String imagename;
     private String imagedesc;
     private String path;
-    private Integer year;
+    private int year;
     private List<String> tags;
     private Article article;
     private boolean isActive;
@@ -39,8 +41,26 @@ public class ImageWrapper implements Serializable{
 
     public ImageWrapper() {
     }
+//    public Image getImage() throws NonexistentEntityException{
+//        Image img = new Image(imagename, path);
+//        img.setId(id);
+//        img.setImagedesc(imagedesc);
+//        img.setIsActive(isActive);
+//        img.setYear(year);
+//        
+//        IArticleFacade af = new DBFacade();
+//        ITagFacade tf = new DBFacade();
+//        Article art = af.getArticleByImage(img.getId());
+//        img.setArticle(art);
+//        List<Tag> taglist = new ArrayList();
+//        for (String tag : this.tags) {
+//            taglist.add(tf.getTagByName(tag));
+//        }
+//        img.setTags(taglist);
+//        return img;
+//    }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -68,11 +88,11 @@ public class ImageWrapper implements Serializable{
         this.path = path;
     }
 
-    public Integer getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(int year) {
         this.year = year;
     }
 

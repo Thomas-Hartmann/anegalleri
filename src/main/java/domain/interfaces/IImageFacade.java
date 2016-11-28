@@ -1,6 +1,7 @@
 package domain.interfaces;
 
 import domain.entity.Image;
+import domain.entity.wrappers.ImageWrapper;
 import domain.excecption.EntityAllreadyExcistsException;
 import domain.excecption.NonexistentEntityException;
 import java.util.List;
@@ -16,6 +17,8 @@ public interface IImageFacade {
     public List<Image> getImagesByTag(String tagname);
     public Image getImageByName(String name);
     public Image getImageByArticle(int articleId) throws NonexistentEntityException;
+    public ImageWrapper wrapImage(Image image);
+    public List<ImageWrapper> wrapImages(List<Image> images);
     public void addImage(Image image) throws EntityAllreadyExcistsException;
     public void editImage(Image image) throws NonexistentEntityException;
     public void deleteImage(int imageId); //Make it inactive

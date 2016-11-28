@@ -40,6 +40,20 @@ public class UserMapper {
         }
         return user;
     }
+    
+    public User getUserFromName(String username) throws NoSuchUserException {
+        EntityManager em = getEntityManager();
+        TypedQuery<User> q = em.createNamedQuery("User.findByUsername", User.class);
+        q.setParameter("username", username);
+        User user = null;
+        try {
+            user = q.getSingleResult();
+        } catch (Exception e) {
+            throw new NoSuchUserException("No user by name: "+username);
+        }
+        em.close();
+        return user;
+    }
 
     public List<User> getAllUsers() {
         EntityManager em = getEntityManager();

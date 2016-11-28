@@ -5,6 +5,10 @@ import domain.entity.Articleversion;
 import domain.entity.Image;
 import domain.entity.Tag;
 import domain.entity.User;
+import domain.entity.wrappers.ArticleWrapper;
+import domain.entity.wrappers.ImageWrapper;
+import domain.entity.wrappers.TagWrapper;
+import domain.entity.wrappers.UserWrapper;
 import domain.excecption.EntityAllreadyExcistsException;
 import domain.excecption.NoSuchUserException;
 import domain.excecption.NonexistentEntityException;
@@ -13,6 +17,7 @@ import domain.interfaces.IArticleFacade;
 import domain.interfaces.IImageFacade;
 import domain.interfaces.ITagFacade;
 import domain.interfaces.IUserFacade;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -185,6 +190,11 @@ public class DBFacade implements IArticleFacade, IImageFacade, ITagFacade, IUser
     }
     
     @Override
+    public User getUserFromName(String username) throws NoSuchUserException {
+        return um.getUserFromName(username);
+    }
+    
+    @Override
     public List<User> getAllUsers() {
         return um.getAllUsers();
     }
@@ -223,5 +233,67 @@ public class DBFacade implements IArticleFacade, IImageFacade, ITagFacade, IUser
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public ArticleWrapper wrapArticle(Article article) {
+        return new ArticleWrapper(article);
+    }
 
+    @Override
+    public List<ArticleWrapper> wrapArticles(List<Article> articles) {
+        List<ArticleWrapper> aws = new ArrayList();
+        for (Article article : articles) {
+            aws.add(new ArticleWrapper(article));
+        }
+        return aws;
+    }
+
+    @Override
+    public ImageWrapper wrapImage(Image image) {
+        return new ImageWrapper(image);
+    }
+
+    @Override
+    public List<ImageWrapper> wrapImages(List<Image> images) {
+        List<ImageWrapper> iws = new ArrayList();
+        for (Image image : images) {
+            iws.add(new ImageWrapper(image));
+        }
+        return iws;
+    }
+
+    @Override
+    public TagWrapper wrapTag(Tag tag) {
+        return new TagWrapper(tag);
+    }
+
+    @Override
+    public List<TagWrapper> wrapTags(List<Tag> tags) {
+        List<TagWrapper> tws = new ArrayList();
+        for (Tag tag : tags) {
+            tws.add(new TagWrapper(tag));
+        }
+        return tws;
+    }
+
+    @Override
+    public UserWrapper wrapUser(User user) {
+        return new UserWrapper(user);
+    }
+
+    @Override
+    public List<UserWrapper> wrapUsers(List<User> users) {
+        List<UserWrapper> uws = new ArrayList();
+        for (User user : users) {
+            uws.add(new UserWrapper(user));
+        }
+        return uws;
+    }
+    public static void main(String[] args) {
+        DBFacade dbf = new DBFacade();
+        List<Image> images = dbf.getAllImages();
+        for (Image image : images) {
+            System.out.println(image.getPath());
+        }
+        List<ImageWrapper> imw = dbf.wrapImages(images);
+    }
 }
